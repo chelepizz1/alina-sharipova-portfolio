@@ -41,6 +41,10 @@ a {
   color: rgb(215 255 66 / 0.85);
 }
 
+.bg-bone .section-kicker {
+  color: rgb(10 10 10 / 0.58);
+}
+
 .section-title {
   margin-top: 1rem;
   font-family: var(--font-display), Arial, sans-serif;
@@ -149,20 +153,34 @@ a {
   mix-blend-mode: screen;
 }
 
-.masonry-grid {
-  columns: 1;
-  column-gap: 1.25rem;
+.cases-grid {
+  display: grid;
+  gap: 1.25rem;
 }
 
-@media (min-width: 760px) {
-  .masonry-grid {
-    columns: 2;
+@media (min-width: 900px) {
+  .cases-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    grid-template-areas:
+      "posters social improv"
+      "posters brand improv";
   }
-}
 
-@media (min-width: 1180px) {
-  .masonry-grid {
-    columns: 3;
+  .case-slot-concerts-in-ufa {
+    grid-area: posters;
+  }
+
+  .case-slot-ficus-vpn {
+    grid-area: social;
+  }
+
+  .case-slot-vk-group-identity {
+    grid-area: brand;
+  }
+
+  .case-slot-improv-events {
+    grid-area: improv;
   }
 }
 
@@ -171,7 +189,6 @@ a {
   display: block;
   margin-bottom: 1.25rem;
   overflow: hidden;
-  break-inside: avoid;
   border: 1px solid rgb(255 255 255 / 0.11);
   border-radius: 8px;
   background: #111;
@@ -343,9 +360,10 @@ a {
 }
 
 .tool-row span {
-  font-family: var(--font-display), Arial, sans-serif;
-  font-size: clamp(2rem, 5vw, 5.2rem);
-  line-height: 0.95;
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: clamp(1.35rem, 3vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.05;
   text-transform: uppercase;
 }
 
@@ -385,10 +403,10 @@ a {
 }
 
 .contact-list strong {
-  font-family: var(--font-display), Arial, sans-serif;
-  font-size: clamp(1.5rem, 4vw, 4.2rem);
-  line-height: 1;
-  text-transform: uppercase;
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .case-hero-art {
@@ -453,6 +471,6 @@ a {
   }
 
   .tool-row span {
-    font-size: clamp(1.8rem, 12vw, 3.6rem);
+    font-size: clamp(1.4rem, 8vw, 2.4rem);
   }
 }
