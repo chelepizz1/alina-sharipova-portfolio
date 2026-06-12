@@ -167,10 +167,8 @@ a {
 }
 
 .case-card {
-  --card-height: 31rem;
   position: relative;
   display: block;
-  min-height: var(--card-height);
   margin-bottom: 1.25rem;
   overflow: hidden;
   break-inside: avoid;
@@ -180,24 +178,13 @@ a {
   color: #f4f0e8;
 }
 
-.case-card-tall {
-  --card-height: 40rem;
-}
-
-.case-card-wide {
-  --card-height: 28rem;
-}
-
-.case-card-square {
-  --card-height: 32rem;
-}
-
 .case-art {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  background: #111;
   transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 400ms ease;
 }
 
@@ -226,7 +213,7 @@ a {
 }
 
 .case-card:hover .case-art {
-  transform: scale(1.08);
+  transform: scale(1.025);
   filter: saturate(1.25);
 }
 
@@ -295,9 +282,9 @@ a {
 
 .presentation-preview {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  max-height: 22rem;
   border-radius: 6px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
   border: 1px solid rgb(10 10 10 / 0.12);
   box-shadow: 0 18px 45px rgb(10 10 10 / 0.12);
@@ -323,8 +310,9 @@ a {
 
 .marquee-item {
   position: relative;
-  width: clamp(18rem, 30vw, 28rem);
-  height: 22rem;
+  width: auto;
+  height: clamp(20rem, 33vw, 31rem);
+  flex: 0 0 auto;
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgb(255 255 255 / 0.12);
@@ -336,92 +324,71 @@ a {
   transform: scale(1.04);
 }
 
-.orbit {
-  position: absolute;
-  inset: 50% auto auto 50%;
-  width: min(76vw, 34rem);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  border: 1px solid rgb(10 10 10 / 0.16);
-  border-radius: 50%;
+.marquee-item .case-art {
+  width: auto;
+  height: 100%;
+  max-width: none;
 }
 
-.orbit::before,
-.orbit::after {
-  content: "";
-  position: absolute;
-  inset: 14%;
-  border: 1px solid rgb(10 10 10 / 0.1);
-  border-radius: 50%;
-}
-
-.orbit::after {
-  inset: 29%;
-}
-
-.orbit-item {
-  --angle: calc(360deg / var(--total) * var(--i));
-  position: absolute;
-  left: 50%;
-  top: 50%;
+.tools-list {
   display: grid;
-  width: 8.4rem;
-  min-height: 3.35rem;
-  place-items: center;
-  border: 1px solid rgb(10 10 10 / 0.14);
-  border-radius: 999px;
-  background: #f4f0e8;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-align: center;
+  gap: 0.75rem;
+}
+
+.tool-row {
+  display: grid;
+  gap: 0.4rem;
+  border-top: 1px solid rgb(10 10 10 / 0.16);
+  padding: 1.15rem 0;
+}
+
+.tool-row span {
+  font-family: var(--font-display), Arial, sans-serif;
+  font-size: clamp(2rem, 5vw, 5.2rem);
+  line-height: 0.95;
   text-transform: uppercase;
-  transform: rotate(var(--angle)) translateX(min(38vw, 17rem)) rotate(calc(var(--angle) * -1));
-  transition: background 220ms ease, color 220ms ease, transform 220ms ease;
 }
 
-.orbit-item::after {
-  content: attr(data-level);
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  color: rgb(10 10 10 / 0.52);
-  opacity: 0;
-  transition: opacity 220ms ease;
+.tool-row p {
+  max-width: 32rem;
+  color: rgb(10 10 10 / 0.58);
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
-.orbit-item:hover {
-  background: #0a0a0a;
-  color: #d7ff42;
-}
-
-.orbit-item:hover::after {
-  opacity: 1;
-}
-
-.orbit-core {
-  position: absolute;
-  inset: 35%;
+.contact-list {
   display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #0a0a0a;
+  gap: 0;
+  margin-top: 3.5rem;
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+}
+
+.contact-list a {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.16);
   color: #f4f0e8;
-  text-align: center;
-  text-transform: uppercase;
+  transition: color 180ms ease, padding-left 180ms ease;
 }
 
-.orbit-core span {
-  align-self: end;
+.contact-list a:hover {
+  color: #d7ff42;
+  padding-left: 0.75rem;
+}
+
+.contact-list span {
   font-size: 0.72rem;
   letter-spacing: 0.28em;
-  color: rgb(255 255 255 / 0.52);
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.45);
 }
 
-.orbit-core strong {
-  align-self: start;
+.contact-list strong {
   font-family: var(--font-display), Arial, sans-serif;
-  font-size: clamp(1.35rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.5rem, 4vw, 4.2rem);
   line-height: 1;
+  text-transform: uppercase;
 }
 
 .case-hero-art {
@@ -485,13 +452,7 @@ a {
     min-height: 27rem;
   }
 
-  .orbit {
-    width: min(88vw, 27rem);
-  }
-
-  .orbit-item {
-    width: 6.9rem;
-    font-size: 0.68rem;
-    transform: rotate(var(--angle)) translateX(min(37vw, 13.4rem)) rotate(calc(var(--angle) * -1));
+  .tool-row span {
+    font-size: clamp(1.8rem, 12vw, 3.6rem);
   }
 }
