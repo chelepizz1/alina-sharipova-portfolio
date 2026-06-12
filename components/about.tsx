@@ -7,7 +7,11 @@ export function About() {
     <section id="about" className="section-grid bg-ink text-bone">
       <Reveal>
         <div className="portrait-frame">
-          <div className="portrait-glow" />
+          <img
+            src="/works/alina-photo.jpg"
+            alt="Алина Шарипова"
+            className="portrait-photo"
+          />
           <div className="portrait-lines" />
           <div className="absolute bottom-6 left-6 text-xs uppercase tracking-[0.3em] text-white/54">
             Alina Sharipova

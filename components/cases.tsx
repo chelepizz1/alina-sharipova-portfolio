@@ -23,12 +23,11 @@ export function Cases() {
             <Link
               href={`/cases/${item.slug}`}
               className={`case-card case-card-${item.height}`}
-              style={{ "--accent": item.accent, "--poster": item.poster } as CSSVarStyle}
+              style={{ "--accent": item.accent } as CSSVarStyle}
             >
-              <div className="case-art" />
+              <img className="case-art" src={item.poster} alt={item.title} />
               <div className="case-meta">
                 <span>{item.category}</span>
-                <h3>{item.title}</h3>
               </div>
               <p className="case-description">{item.summary}</p>
             </Link>

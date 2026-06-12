@@ -6,7 +6,7 @@ export function Contact() {
       <div className="abstract-lines opacity-45" />
       <div className="relative z-10 mt-auto w-full">
         <p className="section-kicker text-acid">Контакты</p>
-        <h2 className="max-w-6xl font-display text-[clamp(3rem,10vw,10rem)] uppercase leading-[0.9] tracking-tightish">
+        <h2 className="max-w-6xl font-display text-[clamp(2.5rem,7.4vw,7.6rem)] uppercase leading-[0.96] tracking-tightish">
           Давайте создадим что-то классное.
         </h2>
         <div className="mt-12 flex flex-wrap gap-4">

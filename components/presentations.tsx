@@ -12,18 +12,22 @@ export function Presentations() {
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {presentationProjects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.08}>
-              <article
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
                 className="glass-card"
                 style={{ "--accent": project.accent } as CSSVarStyle}
               >
+                <img src={project.image} alt={project.title} className="presentation-preview" />
                 <span className="text-xs uppercase tracking-[0.28em] text-ink/48">
                   AI Deck
                 </span>
-                <h3 className="mt-10 min-h-28 font-display text-4xl leading-none">
+                <h3 className="mt-8 min-h-24 font-display text-3xl leading-none">
                   {project.title}
                 </h3>
                 <p className="mt-8 text-base leading-relaxed text-ink/62">{project.text}</p>
-              </article>
+              </a>
             </Reveal>
           ))}
         </div>

@@ -1,8 +1,8 @@
-import { cases } from "@/data/portfolio";
+import { galleryItems } from "@/data/portfolio";
 import type { CSSVarStyle } from "@/lib/utils";
 
 export function GalleryMarquee() {
-  const items = [...cases, ...cases];
+  const items = [...galleryItems, ...galleryItems];
 
   return (
     <section className="overflow-hidden bg-ink py-20 text-bone">
@@ -12,12 +12,11 @@ export function GalleryMarquee() {
       <div className="marquee-track">
         {items.map((item, index) => (
           <div
-            key={`${item.slug}-${index}`}
+            key={`${item.image}-${index}`}
             className="marquee-item"
-            style={{ "--accent": item.accent, "--poster": item.poster } as CSSVarStyle}
+            style={{ "--accent": item.accent } as CSSVarStyle}
           >
-            <div className="case-art" />
-            <span>{item.title}</span>
+            <img className="case-art" src={item.image} alt={item.title} />
           </div>
         ))}
       </div>

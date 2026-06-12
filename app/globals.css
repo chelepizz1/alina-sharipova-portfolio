@@ -5,6 +5,8 @@
 :root {
   color-scheme: dark;
   background: #0a0a0a;
+  --font-body: Inter, Arial, Helvetica, sans-serif;
+  --font-display: Arial Black, Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -42,8 +44,8 @@ a {
 .section-title {
   margin-top: 1rem;
   font-family: var(--font-display), Arial, sans-serif;
-  font-size: clamp(2.55rem, 6.3vw, 7.2rem);
-  line-height: 0.92;
+  font-size: clamp(2rem, 4.8vw, 5.4rem);
+  line-height: 0.98;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -130,14 +132,14 @@ a {
     linear-gradient(180deg, #171717, #0a0a0a);
 }
 
-.portrait-glow {
+.portrait-photo {
   position: absolute;
-  inset: 12% 18% 0;
-  border-radius: 46% 46% 0 0;
-  background:
-    linear-gradient(180deg, rgb(244 240 232 / 0.4), rgb(244 240 232 / 0.08)),
-    radial-gradient(circle at 50% 20%, rgb(215 255 66 / 0.25), transparent 36%);
-  filter: grayscale(0.2);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
+  filter: grayscale(1) contrast(1.08);
 }
 
 .portrait-lines {
@@ -193,11 +195,13 @@ a {
 .case-art {
   position: absolute;
   inset: 0;
-  background: var(--poster);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), filter 400ms ease;
 }
 
-.case-art::before,
+.case-card::before,
 .case-hero-art::before,
 .marquee-item::before {
   content: "";
@@ -206,15 +210,19 @@ a {
   border: 1px solid color-mix(in srgb, var(--accent), transparent 42%);
   border-radius: 50%;
   transform: rotate(-18deg);
+  z-index: 1;
 }
 
-.case-art::after,
+.case-card::after,
 .case-hero-art::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(112deg, transparent 0 34px, rgb(255 255 255 / 0.13) 35px, transparent 36px);
+  background:
+    linear-gradient(180deg, rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.72)),
+    repeating-linear-gradient(112deg, transparent 0 34px, rgb(255 255 255 / 0.1) 35px, transparent 36px);
   mix-blend-mode: overlay;
+  z-index: 1;
 }
 
 .case-card:hover .case-art {
@@ -243,7 +251,7 @@ a {
 .case-meta h3 {
   margin-top: 0.55rem;
   font-family: var(--font-display), Arial, sans-serif;
-  font-size: clamp(2rem, 4vw, 4.4rem);
+  font-size: clamp(1.6rem, 3vw, 3.4rem);
   line-height: 0.94;
   text-transform: uppercase;
 }
@@ -267,7 +275,8 @@ a {
 }
 
 .glass-card {
-  min-height: 28rem;
+  display: block;
+  min-height: 26rem;
   border: 1px solid rgb(10 10 10 / 0.12);
   border-radius: 8px;
   padding: 1.5rem;
@@ -282,6 +291,16 @@ a {
 .glass-card:hover {
   transform: translateY(-8px);
   border-color: color-mix(in srgb, var(--accent), transparent 26%);
+}
+
+.presentation-preview {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid rgb(10 10 10 / 0.12);
+  box-shadow: 0 18px 45px rgb(10 10 10 / 0.12);
 }
 
 .marquee-track {
@@ -309,28 +328,12 @@ a {
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid rgb(255 255 255 / 0.12);
-  background: var(--poster);
+  background: #111;
   transition: transform 300ms ease;
 }
 
 .marquee-item:hover {
   transform: scale(1.04);
-}
-
-.marquee-item span {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  z-index: 2;
-  font-family: var(--font-display), Arial, sans-serif;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 220ms ease;
-}
-
-.marquee-item:hover span {
-  opacity: 1;
 }
 
 .orbit {
@@ -417,7 +420,7 @@ a {
 .orbit-core strong {
   align-self: start;
   font-family: var(--font-display), Arial, sans-serif;
-  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  font-size: clamp(1.35rem, 2.2vw, 2.2rem);
   line-height: 1;
 }
 
@@ -426,7 +429,16 @@ a {
   min-height: 78vh;
   overflow: hidden;
   border-radius: 8px;
-  background: var(--poster);
+  background: #111;
+}
+
+.case-hero-art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #0f0f0f;
 }
 
 .case-section {
@@ -445,9 +457,23 @@ a {
 
 .case-section p {
   max-width: 52rem;
-  font-size: clamp(1.45rem, 3vw, 3rem);
-  line-height: 1.08;
+  font-size: clamp(1.25rem, 2.35vw, 2.35rem);
+  line-height: 1.16;
   color: rgb(255 255 255 / 0.78);
+}
+
+.case-image-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.case-image-stack img {
+  width: 100%;
+  max-height: 92vh;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #111;
+  border: 1px solid rgb(255 255 255 / 0.1);
 }
 
 @media (max-width: 680px) {

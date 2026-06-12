@@ -32,17 +32,25 @@ export function Hero() {
           <p className="mb-5 font-display text-sm uppercase tracking-[0.42em] text-acid">
             Graphic Designer
           </p>
-          <h1 className="font-display text-[clamp(3.4rem,13vw,13.5rem)] uppercase leading-[0.86] tracking-tightish">
-            {splitLetters("АЛИНА ШАРИПОВА").map(({ letter, key }, index) => (
-              <motion.span
-                key={key}
-                className="inline-block"
-                initial={{ opacity: 0, y: 80, rotateX: -70 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ duration: 0.7, delay: 0.04 * index, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {letter}
-              </motion.span>
+          <h1 className="font-display text-[clamp(3rem,10.5vw,10.8rem)] uppercase leading-[0.92] tracking-tightish">
+            {["АЛИНА", "ШАРИПОВА"].map((line, lineIndex) => (
+              <span key={line} className="block">
+                {splitLetters(line).map(({ letter, key }, index) => (
+                  <motion.span
+                    key={key}
+                    className="inline-block"
+                    initial={{ opacity: 0, y: 80, rotateX: -70 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: 0.04 * (index + lineIndex * 7),
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>
             ))}
           </h1>
         </div>

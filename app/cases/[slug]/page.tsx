@@ -45,7 +45,7 @@ export default async function CasePage({ params }: CasePageProps) {
           </nav>
           <div className="grid min-h-[82vh] content-end gap-10 pb-10 pt-24 lg:grid-cols-[1fr_.55fr]">
             <Reveal>
-              <h1 className="font-display text-[clamp(3.3rem,11vw,11rem)] uppercase leading-[0.86] tracking-tightish">
+              <h1 className="font-display text-[clamp(2.7rem,8vw,8.5rem)] uppercase leading-[0.92] tracking-tightish">
                 {item.title}
               </h1>
             </Reveal>
@@ -59,8 +59,10 @@ export default async function CasePage({ params }: CasePageProps) {
           <div
             data-parallax
             className="case-hero-art"
-            style={{ "--accent": item.accent, "--poster": item.poster } as CSSVarStyle}
-          />
+            style={{ "--accent": item.accent } as CSSVarStyle}
+          >
+            <img src={item.poster} alt={item.title} />
+          </div>
         </section>
 
         <section className="px-5 pb-24 sm:px-8 lg:px-12">
@@ -71,6 +73,16 @@ export default async function CasePage({ params }: CasePageProps) {
                   <span>{section.label}</span>
                   <p>{section.text}</p>
                 </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="px-5 pb-28 sm:px-8 lg:px-12">
+          <div className="case-image-stack">
+            {item.images.map((image, index) => (
+              <Reveal key={image} delay={index * 0.04}>
+                <img src={image} alt={`${item.title} ${index + 1}`} />
               </Reveal>
             ))}
           </div>
